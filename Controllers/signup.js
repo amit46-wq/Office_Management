@@ -7,7 +7,6 @@ module.exports.renderSignUpForm=(req, res) => res.render('auth/signUp');
 module.exports.signUp=async (req, res) => {
   const { fullName, email, password } = req.body;
 
-  //Check if this name is a registered HOD
   const isHOD = await Dept.findOne({ hod: new RegExp(`^${fullName}$`, 'i') });
 
   if (!isHOD) {
@@ -16,7 +15,6 @@ module.exports.signUp=async (req, res) => {
 
   const user = new User({ fullName, email, password, role: 'admin' });
   await user.save();
-
   const token = createToken(user);
   res.cookie('token', token, { httpOnly: true });
   res.redirect('/employees');
