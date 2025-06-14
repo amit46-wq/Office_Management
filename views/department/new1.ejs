@@ -1,0 +1,38 @@
+<%layout("/layouts/boilerplate") %>
+<body>
+    <div class="row">
+        <div class="col-10 offset-2">
+        <br/><br/>
+    <form method="POST" action="/dept">
+        <div class="mb-3">
+            <label for="name" class="form-label">Enter name of Department:</label>
+            <input name="dept[name]" placeholder="Department Name" class="form-control" required  >
+        </div>
+
+        <div class="mb-3">
+            <label for="hod" class="form-label">Enter name of HOD:</label>
+            <input name="dept[hod]" placeholder="HOD Name" class="form-control" required >
+        </div>
+
+        <div class="mb-3">
+            <label for="employee_count" class="form-label">Enter no of employee count:</label>
+            <input name="dept[employee_count]" placeholder="No. of employees" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label for="employeeIds" class="form-label">Assign Employees to Department:</label>
+          <select name="employeeIds" class="form-control" multiple required>
+            <% allEmployees.forEach(emp => { %>
+              <option value="<%= emp._id %>"><%= emp.f_name %><%= emp.l_name %></option>
+            <% }) %>
+          </select>
+          <small>Select multiple employees by holding Ctrl (or Cmd on Mac)</small>
+        </div>
+        <button class="btn btn-dark add-btn">Add</button>
+
+    </form>
+    </div>
+    </div>
+
+</form>
+</body>
+

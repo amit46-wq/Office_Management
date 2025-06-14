@@ -1,0 +1,58 @@
+<%layout("/layouts/boilerplate") %>
+<body>
+    <form method="GET" action="/employees" class="row mb-3 mt-4">
+  <div class="col-md-3">
+    <select name="department" class="form-control">
+      <option value="all">All Departments</option>
+      <% departments.forEach(d => { %>
+        <option value="<%= d._id %>" <%= selectedDept == d._id ? 'selected' : '' %>><%= d.name %></option>
+      <% }) %>
+    </select>
+  </div>
+  <div class="col-md-3">
+    <select name="job" class="form-control">
+      <option value="all">All Job Titles</option>
+      <% jobTitles.forEach(j => { %>
+        <option value="<%= j %>" <%= selectedJob == j ? 'selected' : '' %>><%= j %></option>
+      <% }) %>
+    </select>
+  </div>
+  <div class="col-md-3">
+    <button class="btn btn-dark w-100">Filter</button>
+  </div>
+</form>
+
+    <h3>All Employees</h3>
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+    <% for (let employee of allEmployees) {%>
+        <a href="/employees/<%= employee._id %>" class="employee-link">
+    <div class="card col" >
+        <img src="https://res.cloudinary.com/dnuhwt9dg/image/upload/v1749896635/profile_v1v2aj.jpg" class="card-img-top" alt="..." style="height: 22rem">
+        <div class="card-img-overlay"></div>
+        <div class="card-body">
+        <p class="card-text"><b> NAME: <%= employee.f_name %> <%= employee.l_name %></b><br/><br/>
+        JOB ROLE: <%= employee.job_title %>
+        </p>
+        </div>
+    </div>
+    </a>
+    <% } %>
+    </div>
+    <% const queryStr = `search=${searchTerm || ''}&department=${selectedDept || 'all'}&job=${selectedJob || 'all'}`; %>
+
+<div class="pagination mt-4 text-center">
+  <% if (currentPage > 1) { %>
+    <a href="/employees?page=<%= currentPage - 1 %>&<%= queryStr %>" class="btn btn-outline-dark mx-1">Previous</a>
+  <% } %>
+
+  <% for (let i = 1; i <= totalPages; i++) { %>
+    <a href="/employees?page=<%= i %>&<%= queryStr %>" class="btn <%= i === currentPage ? 'btn-dark' : 'btn-outline-dark' %> mx-1">
+      <%= i %>
+    </a>
+  <% } %>
+
+  <% if (currentPage < totalPages) { %>
+    <a href="/employees?page=<%= currentPage + 1 %>&<%= queryStr %>" class="btn btn-outline-dark mx-1">Next</a>
+  <% } %>
+</div>
+</body>

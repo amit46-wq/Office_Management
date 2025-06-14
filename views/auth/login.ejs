@@ -1,0 +1,18 @@
+<% layout("auth/auth") -%>
+
+<% title = "Login" %>
+
+<form method="POST" action="/login">
+  <div class="mb-3">
+    <label>Email</label>
+    <input name="email" type="email" class="form-control" required>
+  </div>
+
+  <div class="mb-3">
+    <label>Password</label>
+    <input name="password" type="password" class="form-control" required>
+  </div>
+
+  <button type="submit" class="btn btn-dark w-100">Login</button>
+</form>
+<p class="mt-3 text-center">Don't have an account? <a href="/signup">Sign up</a></p>

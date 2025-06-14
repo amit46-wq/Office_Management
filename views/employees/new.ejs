@@ -1,0 +1,129 @@
+<%layout("/layouts/boilerplate") %>
+<body>
+    <div class="row">
+        <div class="col-10 offset-2">
+        <br/>
+    <form method="POST" action="/employees" >
+        <div class="mb-3">
+            <label for="f_name" class="form-label">Enter First first name:</label>
+            <input name="employee[f_name]" placeholder="enter first name" class="form-control" required  >
+        </div>
+
+        <div class="mb-3">
+            <label for="l_name" class="form-label">Enter last name:</label>
+            <input name="employee[l_name]" placeholder="enter last name" class="form-control" required >
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="form-label">Enter email</label>
+            <input name="employee[email]" placeholder="enter email " class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+             <label for="job_title" class="form-label">Enter Your Job Title</label>
+            <input name="employee[job_title]" placeholder="enter your job title" class="form-control"required >
+        </div>
+
+        <div class="mb-3">
+            <label for="dept" class="form-label">Enter Your Department</label>
+            <input name="employee[dept]" placeholder="enter your department" class="form-control" required >
+        </div>
+
+        <div class="mb-3">
+            <label for="supervisor" class="form-label">Enter Your Supervisor name</label>
+            <input name="employee[supervisor]" placeholder="enter supervisor name" class="form-control">
+        </div>
+
+
+        <div class="mb-3">
+            <label for="country">Country:</label>
+            <select id="country" name="employee[country]" class="form-control" required>
+                <option value="">Select Country</option>
+            </select>
+            </div>
+
+       <div class="mb-3">
+            <label for="state">State:</label>
+            <select id="state" name="employee[state]" class="form-control" required>
+                <option value="">Select State</option>
+            </select>
+        </div>
+
+            <div class="mb-3">
+            <label for="city">City:</label>
+            <select id="city" name="employee[city]" class="form-control" required>
+                <option value="">Select City</option>
+            </select>
+            </div>
+
+        </div>
+        
+        <button class="btn btn-dark add-btn col-2 offset-2 mb-3">Add</button>
+    </form>
+    </div>
+    </div>
+    <script>
+  document.addEventListener("DOMContentLoaded", async () => {
+    const countrySelect = document.getElementById("country");
+    const stateSelect = document.getElementById("state");
+    const citySelect = document.getElementById("city");
+
+    // Fetch all countries
+    const countriesRes = await fetch("https://countriesnow.space/api/v0.1/countries/positions");
+    const countriesData = await countriesRes.json();
+
+    countriesData.data.forEach((country) => {
+      const opt = document.createElement("option");
+      opt.value = country.name;
+      opt.textContent = country.name;
+      countrySelect.appendChild(opt);
+    });
+
+    // Fetch states based on country
+    countrySelect.addEventListener("change", async () => {
+      const country = countrySelect.value;
+      stateSelect.innerHTML = '<option value="">Loading...</option>';
+      citySelect.innerHTML = '<option value="">Select City</option>';
+
+      const stateRes = await fetch("https://countriesnow.space/api/v0.1/countries/states", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ country })
+      });
+      const stateData = await stateRes.json();
+
+      stateSelect.innerHTML = '<option value="">Select State</option>';
+      stateData.data.states.forEach((state) => {
+        const opt = document.createElement("option");
+        opt.value = state.name;
+        opt.textContent = state.name;
+        stateSelect.appendChild(opt);
+      });
+    });
+
+    // Fetch cities based on state
+    stateSelect.addEventListener("change", async () => {
+      const country = countrySelect.value;
+      const state = stateSelect.value;
+
+      citySelect.innerHTML = '<option value="">Loading...</option>';
+
+      const cityRes = await fetch("https://countriesnow.space/api/v0.1/countries/state/cities", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ country, state })
+      });
+      const cityData = await cityRes.json();
+
+      citySelect.innerHTML = '<option value="">Select City</option>';
+      cityData.data.forEach((city) => {
+        const opt = document.createElement("option");
+        opt.value = city;
+        opt.textContent = city;
+        citySelect.appendChild(opt);
+      });
+    });
+  });
+</script>
+
+</body>

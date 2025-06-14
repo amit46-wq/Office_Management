@@ -1,0 +1,22 @@
+<%layout("/layouts/boilerplate") %>
+<body>
+    <h4>List of Departments</h4>
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+    <% for (let dept of allDept) {%>     
+    <div class="card col" >
+        <img src="https://res.cloudinary.com/dnuhwt9dg/image/upload/v1749896635/profile_v1v2aj.jpg" class="card-img-top" alt="..." style="height: 22rem">
+        
+        <div class="card-body">
+        <p class="card-text"><b>Name: <%= dept.name %> </b><br/><br/>
+            HOD: <%= dept.hod %><br/><br/>
+            No of Employees: <%= dept.employee_count %>
+        </p>
+        <form method="POST" action="/dept?_method=DELETE">
+  <input type="hidden" name="id" value="<%= dept._id %>">
+  <button class="btn btn-dark offset-4">Delete</button>
+</form>
+        </div>
+    </div>
+    <% } %>
+    </div>
+</body>

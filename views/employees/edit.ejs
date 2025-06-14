@@ -1,0 +1,61 @@
+<%layout("/layouts/boilerplate") %>
+<body>
+    
+    <div class="row">
+        <div class="col-10 offset-2">
+        <h3 >Edit Details</h3>
+        <br/>
+    
+    <form method="POST" action="/employees/<%= employee._id %>?_method=PUT">
+        <div class="mb-3">
+            <label for="f_name" class="form-label">Enter First first name:</label>
+            <input name="employee[f_name]"  value="<%=employee.f_name%>" class="form-control">
+        </div>
+        <div class="mb-3">
+                        <label for="l_name" class="form-label">Enter last name:</label>
+            <input name="employee[l_name]" value="<%=employee.l_name%>" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="form-label">Enter email</label>
+            <input name="employee[email]"  value="<%=employee.email%>" class="form-control">
+        </div>
+
+        <div class="mb-3">
+             <label for="job_title" class="form-label">Enter Your Job Title</label>
+            <input name="employee[job_title]" value="<%=employee.job_title%>" class="form-control">
+        </div>
+        
+        <div class="mb-3">
+            <label for="dept" class="form-label">Enter Your Department</label>
+            <input name="employee[dept]" value="<%=employee.dept%>" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label for="supervisor" class="form-label">Enter Your Supervisor name</label>
+            <input name="employee[supervisor]" value="<%=employee.supervisor%>" class="form-control">
+        </div>
+
+
+        <div class="mb-3 ">
+            <label for="country" class="form-label">Enter Your Country</label>
+            <input name="employee[country]" value="<%=employee.country%>" class="form-control">
+        </div>
+
+        <div class="row">
+        <div class="mb-3 col-md-4">
+            <label for="state" class="form-label">Enter Your State</label>
+            <input name="employee[state]" value="<%=employee.state%>"  class="form-control">
+        </div>
+
+        <div class="mb-3 col-md-8">
+            <label for="city" class="form-label">Enter Your City</label>
+            <input name="employee[city]" value="<%=employee.city%>" class="form-control">
+        </div>
+        </div>
+
+        <button class="btn btn-dark edit-btn">Edit</button>
+    </form>
+    </div>
+    </div>
+</body>
