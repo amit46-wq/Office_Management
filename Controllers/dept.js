@@ -32,7 +32,6 @@ module.exports.addDept=async (req, res) => {
 
   const { employeeIds } = req.body;
 
-  // Ensure employeeIds is an array
   const employeesToUpdate = Array.isArray(employeeIds) ? employeeIds : [employeeIds];
 
   await Employee.updateMany(
