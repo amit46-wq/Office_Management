@@ -34,9 +34,6 @@ JWT Authentication
 Bootstrap 5
 Render (deployment)
 
-![Home Page](./public/images/home.jpg)
-![Login Page](./public/images/login.jpg)
-![SignUP Page](./public/images/SignUp.jpg)
-![Add Employee Form](./public/images/addemp.jpg)
+All the Screenshots of output are present in root directory of the repo mainly consist of Home,Add new Employee form, Sign Up form, Search, Filter functionality.
 
 
