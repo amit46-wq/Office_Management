@@ -1,33 +1,22 @@
 <nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
   <div class="container-fluid">
-    <!-- Logo -->
     <a class="navbar-brand" href="/">
       <img src="https://res.cloudinary.com/dnuhwt9dg/image/upload/v1749904986/logooffice_scs66p.jpg" width="40" height="40" class="rounded-circle d-inline-block align-top">
     </a>
-
-    <!-- Toggler -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
       <span class="navbar-toggler-icon"></span>
     </button>
-
-    <!-- Navbar content -->
     <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
-      
-      <!-- Left side links -->
       <div class="navbar-nav">
         <a class="nav-link" href="/employees">Home</a>
         <a class="nav-link" href="/dept">Departments</a>
         <a class="nav-link" href="/employees/new">Add new Employee</a>
         <a class="nav-link" href="/dept/new">Add new Department</a>
       </div>
-
-      <!-- Search form (center-aligned with flex-grow) -->
       <form class="d-flex flex-grow-1 justify-content-center mx-3" role="search" method="GET" action="/employees" style="max-width: 500px;">
         <input name="search" class="form-control me-2 flex-grow-1" type="search" placeholder="Search by name or email" value="<%= typeof searchTerm !== 'undefined' ? searchTerm : '' %>" />
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
-
-      <!-- Right-side auth links -->
       <div class="navbar-nav ms-auto">
         <% if (!currentUser) { %>
           <a class="nav-link" href="/login">Login</a>
