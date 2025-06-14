@@ -11,7 +11,6 @@ module.exports.index=async (req, res) => {
   const selectedDept = req.query.department?.trim();
   const selectedJob = req.query.job?.trim();
 
-  // Build dynamic query
   const filter = {};
 
   if (searchTerm) {
