@@ -43,7 +43,7 @@ const sessionOptions={
   cookie:{
     expires: Date.now()+7*24*60*60*1000,
     maxAge: 7*24*60*60*1000,
-    httpOnly:true,   //cross scrypting attacks k liye use hota hai
+    httpOnly:true,  
   },
 };
 
@@ -78,7 +78,6 @@ app.use("/signup",signUp);
 
 app.use("/login",login);
 
-// Logout
 app.get('/logout', (req, res) => {
   res.clearCookie('token');
   res.redirect('/login');
