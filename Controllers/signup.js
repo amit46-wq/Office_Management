@@ -2,7 +2,7 @@ const User = require('../models/user');
 const { createToken } = require('../utils/jwt');
 const Dept = require('../models/dept'); 
 
-module.exports.renderSignUpForm=(req, res) => res.render('auth/signup');
+module.exports.renderSignUpForm=(req, res) => res.render('auth/signUp');
 
 module.exports.signUp=async (req, res) => {
   const { fullName, email, password } = req.body;
