@@ -22,7 +22,7 @@
           <label for="employeeIds" class="form-label">Assign Employees to Department:</label>
           <select name="employeeIds" class="form-control" multiple required>
             <% allEmployees.forEach(emp => { %>
-              <option value="<%= emp._id %>"><%= emp.f_name %><%= emp.l_name %></option>
+              <option value="<%= emp._id %>"><%= emp.f_name %><%= emp.l_name %> &nbsp;   &nbsp;  &nbsp; &nbsp; &nbsp;<%= emp.dept %></option>
             <% }) %>
           </select>
           <small>Select multiple employees by holding Ctrl (or Cmd on Mac)</small>
